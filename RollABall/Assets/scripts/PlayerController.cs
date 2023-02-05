@@ -34,18 +34,21 @@ public class PlayerController : MonoBehaviour
         movy = movementvetcor.y;
     }
 
+    private void FixedUpdate()
+    {
+        Vector3 move = new Vector3(movx, 0f, movy);
+        rb.AddForce(move * speed);
+    }
+    
+    
+    
     void SetCountText()
     {
         text.text = "Count: " + count.ToString();
         if (count >= 12)
             WinText.gameObject.SetActive(true);
     }
-
-    private void FixedUpdate()
-    {
-        Vector3 move = new Vector3(movx, 0f, movy);
-        rb.AddForce(move * speed);
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
