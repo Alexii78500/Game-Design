@@ -63,12 +63,12 @@ public class Ball : MonoBehaviour
 
         if (slow)
         {
-            rb.velocity = new Vector3(rb.velocity.x / 2, 0, 0);
+            rb.velocity = new Vector3(rb.velocity.x / 2, 0, rb.velocity.z);
             mat.color = Color.cyan;
         }
         else if (fast)
         {
-            rb.velocity = new Vector3(rb.velocity.x * 2, 0, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x * 2, 0, 0);
             mat.color = Color.red;
         }
         

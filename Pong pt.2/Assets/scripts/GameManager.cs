@@ -51,9 +51,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Spawning bonuses
         if (bonusDelay < 0)
         {
-            if (rng.Next(0, 2500) == 0)
+            if (rng.Next(0, 500) == 0)
             {
                 NewBonus();
                 bonusDelay = 3;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         }
         else
             bonusDelay -= Time.deltaTime;
+        
         
         //Score fading
         if (fading > 0)
@@ -106,6 +108,18 @@ public class GameManager : MonoBehaviour
             p2_score+= val;
             Debug.Log("Player 2 scored");
         }
+        
+        //Compute Score color
+        if (p1_score >= 8)
+            P1_score.color = Color.yellow;
+        else
+            P1_score.color = Color.red;
+        if (p2_score >= 8)
+            P2_score.color = Color.yellow;
+        else
+            P2_score.color = Color.blue;
+        
+        //Display score
         DisplayScore();
     }
 
