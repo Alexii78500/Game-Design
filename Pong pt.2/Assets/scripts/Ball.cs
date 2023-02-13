@@ -9,8 +9,8 @@ public class Ball : MonoBehaviour
     //The current movement of the ball
     private Vector3 move = new Vector3(0, 0, 0);
 
+    //Speed management
     public static bool slow;
-
     public static bool fast;
     private Material mat;
     private MeshRenderer newRenderer;
@@ -38,6 +38,7 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Variables init
         newRenderer = GetComponent<MeshRenderer>();
         mat = newRenderer.material;
         move.x = speed;
@@ -61,6 +62,8 @@ public class Ball : MonoBehaviour
         else
             rb.velocity = new Vector3(0f, 0f, 0f);
 
+        
+        //Changing color, speed and direction if fast or slow
         if (slow)
         {
             rb.velocity = new Vector3(rb.velocity.x / 2, 0, rb.velocity.z);
@@ -102,6 +105,7 @@ public class Ball : MonoBehaviour
         //Ball hits paddle
         if (other.gameObject.CompareTag("Paddle") && pdelay <= 0)
         {
+            //Reset speed
             slow = false;
             fast = false;
             mat.color = Color.yellow;
@@ -122,6 +126,12 @@ public class Ball : MonoBehaviour
         //Ball hits goal
         if (other.gameObject.CompareTag("Goal"))
         {
+            //Reset speed
+            slow = false;
+            fast = false;
+            mat.color = Color.yellow;
+            
+            //Add to score
             Scored(other);
         }
     }

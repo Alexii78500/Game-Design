@@ -93,6 +93,7 @@ public class Paddle : MonoBehaviour
                 fast = false;
                 Smash();
                 pang.Play();
+                Camera.StartShake(1f, 0.7f);
             }
 
             else if (slow)
