@@ -133,7 +133,7 @@ public class Paddle : MonoBehaviour
     public void SetSpeed(bool faster)
     {
         if (faster)
-            speed *= 1.5f;
+            speed *= 2f;
         else
             speed /= 2;
         speeddelay = 10;

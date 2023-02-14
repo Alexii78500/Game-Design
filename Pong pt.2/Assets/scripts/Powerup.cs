@@ -13,12 +13,15 @@ public class Powerup : MonoBehaviour
     
     public Material mat;
 
-    private Vector3 velocity = new Vector3(10, 0, 0);
+    private Vector3 velocity = new (10, 0, 0);
 
     // Start is called before the first frame update
     void Start()
     {
+        //Type
         type = rng.Next(-1, 3);
+        
+        //Setting color
         if (type > 0)
         {
             mat.color = Color.green;
@@ -30,6 +33,7 @@ public class Powerup : MonoBehaviour
             }
         }
 
+        //Setting position and direction
         transform.position = new Vector3(0, 0.5f, rng.Next(-8, 8));
         if (rng.Next(0, 2) == 0)
         {

@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             if (rng.Next(0, 500) == 0)
             {
                 NewBonus();
-                bonusDelay = 3;
+                bonusDelay = 2.5f;
             }
         }
         else
