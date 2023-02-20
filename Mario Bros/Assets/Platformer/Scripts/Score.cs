@@ -8,13 +8,13 @@ public class Score : MonoBehaviour
 
     public TextMeshProUGUI _scoreText;
     public TextMeshProUGUI _coinText;
-    private static int _score;
+    public static int score;
 
     private static int _coins;
     // Start is called before the first frame update
     void Start()
     {
-        _score = 0;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -25,8 +25,8 @@ public class Score : MonoBehaviour
 
     public void AddScore(int s)
     {
-        _score += s;
-        _scoreText.text = "MARIO\n000" + _score;
+        score += s;
+        _scoreText.text = "MARIO\n000" + score;
         _coins += 1;
         _coinText.text = "x 0" + _coins;
 
