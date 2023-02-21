@@ -23,8 +23,11 @@ public class cam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Blocking if the camera is too far right or left
         if (!(move.z > 0 && transform.position.z > 210) && !(move.z < 0 && transform.position.z < 15))
             transform.position += move * 0.1f;
+        
+        //Reaches the end
         if (transform.position.z > 190 && !ended)
         {
             end();
@@ -37,7 +40,8 @@ public class cam : MonoBehaviour
         Vector2 movementVector= movementValue.Get<Vector2>();
         move.z = movementVector.x;
     }
-
+    
+    //Displayed when player reaches the end
     void end()
     {
         if (Score.score == 0)
