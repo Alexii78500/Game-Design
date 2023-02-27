@@ -15,6 +15,10 @@ public class Controller : MonoBehaviour
     private float _jumpForce = 30f;
     private float jumpBoostRef;
     private float _jumpBoost = 30f;
+    private float coyote = 0.2f;
+    private float coyoteCounter;
+    private bool nudge;
+    
     public Collider col;
     public GameObject Mario;
     private float halfHeight;
@@ -25,7 +29,7 @@ public class Controller : MonoBehaviour
     private Vector3 gravity;
     private bool jump;
 
-    private bool _isGrounded;
+    public bool _isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -76,14 +80,10 @@ public class Controller : MonoBehaviour
         //Different acceleration whether grounded
         else
             _acceleration = 0;
-        
         Speed = move.z * _acceleration * 7;
-
-
         rb.velocity = new Vector3(0, Mathf.Clamp(rb.velocity.y, -5, 5), Speed);
         animator.SetFloat("Speed", Math.Abs(rb.velocity.z));
-        animator.SetBool("IsGrounded", !Physics.Raycast(transform.position, Vector3.down, halfHeight*2));
-        
+
         //Rotation
         if (rb.velocity.z > 0.1f)
             transform.rotation = Quaternion.identity;
@@ -91,10 +91,39 @@ public class Controller : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         
         //Jump
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, halfHeight);
+        _isGrounded = Physics.Raycast(transform.position - new Vector3(0, 0, 0.35f), Vector3.down, halfHeight+0.3f)
+            || Physics.Raycast(transform.position + new Vector3(0, 0, 0.35f), Vector3.down, halfHeight+0.3f)
+            || Physics.Raycast(transform.position, Vector3.down, halfHeight+0.3f);
         
-            //Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        animator.SetBool("IsGrounded", !_isGrounded);
+        
+        //Coyote
+        if (_isGrounded)
+        {
+            coyoteCounter = coyote;
+            nudge = true;
+        }
+        else
+            coyoteCounter -= Time.deltaTime;
+        
+        
+        //Nudging
+        if (!_isGrounded && nudge)
+        {
+            bool right = Physics.Raycast(transform.position - new Vector3(0, 0, 0.2f), Vector3.up, halfHeight + 0.3f);
+            bool left = Physics.Raycast(transform.position + new Vector3(0, 0, 0.2f), Vector3.up, halfHeight + 0.3f);
+            if (left != right)
+            {
+                if (left)
+                    transform.position -= new Vector3(0,0, 0.35f);
+                else
+                    transform.position += new Vector3(0, 0, 0.35f);
+                nudge = false;
+            }
+        }
+
+        //Jumping
+        if (Input.GetKeyDown(KeyCode.Space) && coyoteCounter > 0)
         {
             manager.sound.Play(3);
             rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
@@ -115,6 +144,9 @@ public class Controller : MonoBehaviour
         else
             jump = false;
 
+        //Reset coyote
+        if (Input.GetKeyUp(KeyCode.Space))
+            coyoteCounter = 0;
         
         //Gravity
         if (!_isGrounded)

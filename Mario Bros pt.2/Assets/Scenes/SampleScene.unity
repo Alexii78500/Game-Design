@@ -8452,6 +8452,7 @@ MonoBehaviour:
   manager: {fileID: 1820965753}
   col: {fileID: 1400749696}
   Mario: {fileID: 801221391}
+  _isGrounded: 0
 --- !u!4 &1400749694
 Transform:
   m_ObjectHideFlags: 0
@@ -8490,7 +8491,7 @@ Rigidbody:
     m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -8508,16 +8509,16 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.35
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.03, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.2}
 --- !u!1001 &1623696552
 PrefabInstance:
   m_ObjectHideFlags: 0
