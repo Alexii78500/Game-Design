@@ -20,7 +20,7 @@ public class fireBall : MonoBehaviour
     {
         if (transform.position.y < -5)
         {
-            rb.AddForce(Vector3.up * 0.6f, ForceMode.Impulse);
+            rb.AddForce(Vector3.up *2.6f, ForceMode.Impulse);
         } 
     }
 

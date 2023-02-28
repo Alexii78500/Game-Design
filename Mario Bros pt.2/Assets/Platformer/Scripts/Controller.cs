@@ -90,7 +90,7 @@ public class Controller : MonoBehaviour
         else if (rb.velocity.z < -0.1f)
             transform.rotation = Quaternion.Euler(0, 180, 0);
         
-        //Jump
+        //Grounded
         _isGrounded = Physics.Raycast(transform.position - new Vector3(0, 0, 0.35f), Vector3.down, halfHeight+0.3f)
             || Physics.Raycast(transform.position + new Vector3(0, 0, 0.35f), Vector3.down, halfHeight+0.3f)
             || Physics.Raycast(transform.position, Vector3.down, halfHeight+0.3f);
@@ -110,8 +110,8 @@ public class Controller : MonoBehaviour
         //Nudging
         if (!_isGrounded && nudge)
         {
-            bool right = Physics.Raycast(transform.position - new Vector3(0, 0, 0.2f), Vector3.up, halfHeight + 0.3f);
-            bool left = Physics.Raycast(transform.position + new Vector3(0, 0, 0.2f), Vector3.up, halfHeight + 0.3f);
+            bool right = Physics.Raycast(transform.position - new Vector3(0, 0, 0.1f), Vector3.up, halfHeight + 0.3f);
+            bool left = Physics.Raycast(transform.position + new Vector3(0, 0, 0.1f), Vector3.up, halfHeight + 0.3f);
             if (left != right)
             {
                 if (left)
