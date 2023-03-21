@@ -15,16 +15,19 @@ public class Shop : MonoBehaviour
         bm = BuildManager.Instance;
     }
 
+    //Selects basic turret
     public void SelectStandardTurret()
     {
         bm.SelectTurretToBuild(standardTurret);
     }
     
+    //Selects Missile Launcher
     public void SelectProTurret()
     {
         bm.SelectTurretToBuild(missileLauncher);
     }
     
+    //Select Laser Beamer
     public void SelectLaserTurret()
     {
         bm.SelectTurretToBuild(laser);

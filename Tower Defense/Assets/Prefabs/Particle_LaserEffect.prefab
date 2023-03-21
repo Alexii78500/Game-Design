@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8493067843715212119}
   - component: {fileID: 3041367113666356992}
   m_Layer: 0
-  m_Name: LaserEffect
+  m_Name: Particle_LaserEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -23,11 +23,13 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
+        //Cursor hovering UI
         if (!bm.CanBuild() || EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
         
+        //Turret already on node
         if (turret != null)
         {
             Debug.Log("Can't build here");
@@ -39,21 +41,26 @@ public class Node : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        //Cursor hovering UI
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-
+        
+        //Turret can be built
         if (bm.HasMoney() && turret == null)
             rend.material.color = hoverColorGreen;
         
+        //Can not build on node
         else if (bm.CanBuild())
             rend.material.color = hoverColorRed;
         
+        //No turret selected
         else
             rend.material.color = Color.gray;
     }
 
     private void OnMouseExit()
     {
+        //Back to white
         rend.material.color = startColor;
     }
 }

@@ -20,29 +20,38 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //No target -> destroy the bullet
         if (target == null)
         {
             Destroy(gameObject);
             return;
         }
-
+        
+        
+        //Computing direction to the target
         Vector3 dir = target.position - transform.position;
         float distance = speed * Time.deltaTime;
 
+        //Target is hit
         if (dir.magnitude <= distance)
         {
             HitTarget();
             return;
         }
 
+        //Move towards target
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
         
+        //Look at target
         transform.LookAt(target);
     }
 
     void HitTarget()
     {
+        //Initialise boom
         Destroy(Instantiate(impact, transform.position, transform.rotation), 2f);
+        
+        //Damage zone depending on radius
         if (radius > 0)
         {
             Explode();

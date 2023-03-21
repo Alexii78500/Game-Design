@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8978364308695186392}
   - component: {fileID: 2554075037829250959}
   m_Layer: 0
-  m_Name: MissileImpact
+  m_Name: Particle_MissileImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

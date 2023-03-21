@@ -31,16 +31,20 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Calls Update target every 0.5s
         InvokeRepeating(nameof(UpdateTarget), 0, 0.5f);
         Orot = transform.rotation.eulerAngles;
     }
 
+    
     void UpdateTarget()
     {
+        //Finds all enemies
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float closestD = Mathf.Infinity;
         GameObject closestE = null;
 
+        //Finds the nearest enemy
         foreach (GameObject e in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, e.transform.position);
@@ -51,6 +55,7 @@ public class Turret : MonoBehaviour
             }
         }
 
+        //Make sure it's in range
         if (closestE != null && closestD < range)
         {
             target = closestE.transform;
@@ -66,6 +71,7 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //No target
         if (target == null)
         {
             if (UseLaser && line.enabled)
@@ -111,6 +117,7 @@ public class Turret : MonoBehaviour
 
     void LockTarget()
     {
+        //Makes the turret aim
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
@@ -119,10 +126,13 @@ public class Turret : MonoBehaviour
 
     void Laser()
     {
+        //Damage enemy
         targetEnemy.TakeDamage(damage*Time.deltaTime);
 
+        //Slow down enemy
         targetEnemy.Slow(0.5f);
 
+        //Activate effect
         if (!line.enabled)
         {
             LaserEffect.Play();
@@ -130,14 +140,14 @@ public class Turret : MonoBehaviour
             line.enabled = true;
         }
         
+        //Calculate particle's position
         var position = target.position;
         Vector3 dir = firePoint.position - position;
         Transform transform1;
         (transform1 = LaserImpact.transform).rotation = Quaternion.LookRotation(dir);
         transform1.position = position + dir.normalized;
         
-        
-        
+        //Draw laser
         line.SetPosition(0, firePoint.position);
         line.SetPosition(1, position);
     }
