@@ -18,6 +18,7 @@ public class Loading : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
+    //Fades in at start
     IEnumerator FadeIn()
     {
         float a;
@@ -38,6 +39,7 @@ public class Loading : MonoBehaviour
         StartCoroutine(FadeOut(scene));
     }
     
+    //Fades out and loads scene
     IEnumerator FadeOut(string scene)
     {
         float a;

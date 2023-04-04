@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         GOUI.SetActive(false);
         ended = false;
         instance = this;
+        
+        //Set current level (max 9)
         string level = SceneManager.GetActiveScene().name[6].ToString();
         PlayerPrefs.SetInt("CurrentLevel", (Int32.Parse(level)));
     }
@@ -26,24 +28,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Game ended
         if (ended)
-        {
             return;
-        }
-        if (PlayerStats.Hp <= 0)
-        {
+        
+        if (PlayerStats.Hp <= 0 || Input.GetKeyDown("e"))
             EndGame();
-        }
-
-        if (Input.GetKeyDown("e"))
-        {
-            EndGame();
-        }
     }
 
     void EndGame()
     {
-        
         ended = true;
         GOUI.SetActive(true);
     }

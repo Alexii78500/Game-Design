@@ -103,7 +103,7 @@ public class Node : MonoBehaviour
         isUpgraded = true;
         Destroy(turret);
         
-        //Placing turret on node
+        //Placing new turret on node
         var transform1 = transform;
         turret = Instantiate(turretBp.upgradedPrefab, transform1.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         Instantiate(bm.buildEffect, turret.transform.position, turret.transform.rotation);

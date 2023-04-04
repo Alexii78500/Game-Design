@@ -27,11 +27,13 @@ public class BuildManager : MonoBehaviour
         turretToBuild = turret;
         SelectedNode = null;
         
+        //Hides upgrade UI
         nodeUI.Hide();
     }
 
     public void SelectNode(Node nodeToSelect)
     {
+        //Clicking on the same node
         if (SelectedNode == nodeToSelect)
         {
             DeSelectNode();
@@ -40,6 +42,7 @@ public class BuildManager : MonoBehaviour
         SelectedNode = nodeToSelect;
         turretToBuild = null;
 
+        //Shows upgrade UI
         nodeUI.SetTarget(nodeToSelect);
     }
 

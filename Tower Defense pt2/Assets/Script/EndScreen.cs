@@ -7,23 +7,15 @@ public class EndScreen : MonoBehaviour
     public Loading loading;
     public string menu = "Main Menu";
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    //Loads next level
     public void Continue()
     {
         GameManager.instance.NextLevel();
     }
 
+    //Loads main menu
     public void Menu()
     {
         GameManager.instance.UnlockNext();

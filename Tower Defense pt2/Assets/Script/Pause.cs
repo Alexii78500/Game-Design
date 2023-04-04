@@ -14,6 +14,7 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Enables / disables the menu
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
             Toggle();
@@ -24,14 +25,13 @@ public class Pause : MonoBehaviour
     {
         PauseMenu.SetActive(!PauseMenu.activeSelf);
 
+        //Pauses time
         if (PauseMenu.activeSelf)
-        {
             Time.timeScale = 0f;
-        }
+        
+        //Sets time back to normal
         else
-        {
             Time.timeScale = 1f;
-        }
     }
 
     public void Retry()

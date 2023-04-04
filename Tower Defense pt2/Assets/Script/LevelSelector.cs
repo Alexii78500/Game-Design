@@ -11,10 +11,13 @@ public class LevelSelector : MonoBehaviour
 
    private void Start()
    {
+      //Make sure level progress is not glitched
       if (PlayerPrefs.GetInt("maxLevel", 1) < PlayerPrefs.GetInt("CurrentLevel", 0))
          ResetPrefs();
+      
       int maxLevel = PlayerPrefs.GetInt("maxLevel");
       
+      //Disable all locked levels
       for (int i = 0; i < buttons.Length; i++)
       {
          if (i >= maxLevel)
@@ -27,6 +30,7 @@ public class LevelSelector : MonoBehaviour
       loading.FadeTo(name);
    }
 
+   //Reset the progress
    public static void ResetPrefs()
    {
       PlayerPrefs.SetInt("maxLevel", 1);
