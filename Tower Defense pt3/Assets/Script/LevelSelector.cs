@@ -25,11 +25,6 @@ public class LevelSelector : MonoBehaviour
       }
    }
 
-   public void Select(string name)
-   {
-      loading.FadeTo(name);
-   }
-
    //Reset the progress
    public static void ResetPrefs()
    {

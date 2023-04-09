@@ -1,35 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(EnemyController))]
 public class EnemyMove : MonoBehaviour
 {
     private Transform target;
-    private int wavePointIndex = 0;
+    private NavMeshAgent agent;
+    //private int wavePointIndex = 0;
     public float startSpeed = 10f;
-    private float speed;
+
+    private bool slow = false;
 
     private void Start()
     {
-        target = WayPoints.Waypoints[0];
-        speed = startSpeed;
+        target = End.instance;
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = startSpeed;
+        agent.destination = target.position;
     }
     
     private void Update()
     {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-        if (Vector3.Distance(transform.position, target.position) < 0.2f)
+        if ((target.position - transform.position).magnitude <= 1f)
         {
-            GetNextWayPoint();
+            EndPath();
+            return;
         }
 
-        speed = startSpeed;
+        if (slow)
+        {
+            agent.speed = startSpeed * (1 - .5f);
+            slow = false;
+        }
+        else
+            agent.speed = startSpeed;
     }
 
-    private void GetNextWayPoint()
+    /*private void GetNextWayPoint()
     {
         if (wavePointIndex >= WayPoints.Waypoints.Length - 1)
         {
@@ -38,7 +48,7 @@ public class EnemyMove : MonoBehaviour
         }
         wavePointIndex++;
         target = WayPoints.Waypoints[wavePointIndex];
-    }
+    }*/
     
     void EndPath()
     {
@@ -49,6 +59,6 @@ public class EnemyMove : MonoBehaviour
 
     public void Slow(float pct)
     {
-        speed = startSpeed * (1 - pct);
+        slow = true;
     }
 }

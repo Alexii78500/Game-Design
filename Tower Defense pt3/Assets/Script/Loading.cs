@@ -36,6 +36,7 @@ public class Loading : MonoBehaviour
 
     public void FadeTo(string scene)
     {
+        Debug.Log("Loading " + scene);
         StartCoroutine(FadeOut(scene));
     }
     
