@@ -9279,7 +9279,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.75
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -27239,9 +27239,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 1
-  m_NavMeshData: {fileID: 23800000, guid: ddc5512def6fc764ea42de1fcdcb91c2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2e9dbe9e36097bd459e40ea1346f1eff, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &1960655183
 PrefabInstance:

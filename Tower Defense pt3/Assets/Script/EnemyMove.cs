@@ -16,20 +16,26 @@ public class EnemyMove : MonoBehaviour
 
     private void Start()
     {
-        target = End.instance;
         agent = GetComponent<NavMeshAgent>();
+        
+        //Set speed
         agent.speed = startSpeed;
+        
+        //Set agent destination
+        target = End.instance;
         agent.destination = target.position;
     }
     
     private void Update()
     {
+        //End reached
         if ((target.position - transform.position).magnitude <= 1f)
         {
             EndPath();
             return;
         }
 
+        //enemy slowed down
         if (slow)
         {
             agent.speed = startSpeed * (1 - .5f);
